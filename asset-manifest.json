@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/json-form-builder/static/css/main.b93fead8.css",
-    "main.js": "/json-form-builder/static/js/main.b6857ddb.js",
+    "main.js": "/json-form-builder/static/js/main.733eb193.js",
     "index.html": "/json-form-builder/index.html",
     "main.b93fead8.css.map": "/json-form-builder/static/css/main.b93fead8.css.map",
-    "main.b6857ddb.js.map": "/json-form-builder/static/js/main.b6857ddb.js.map"
+    "main.733eb193.js.map": "/json-form-builder/static/js/main.733eb193.js.map"
   },
   "entrypoints": [
     "static/css/main.b93fead8.css",
-    "static/js/main.b6857ddb.js"
+    "static/js/main.733eb193.js"
   ]
 }
