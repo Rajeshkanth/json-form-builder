@@ -44,6 +44,24 @@ const jsonObject = {
       {
         type: "label",
         labelAttributes: {
+          for: "telephone",
+          class: "form-label",
+        },
+        text: "Telephone :",
+      },
+      {
+        type: "input",
+        inputAttributes: {
+          type: "tel",
+          class: "form-input",
+          id: "telephoneInput",
+          name: "telephone",
+          placeholder: "Phone number",
+        },
+      },
+      {
+        type: "label",
+        labelAttributes: {
           for: "number",
           class: "form-label",
         },
@@ -230,24 +248,6 @@ const jsonObject = {
           class: "form-input",
           id: "textAreaInput",
           name: "textarea",
-        },
-      },
-      {
-        type: "label",
-        labelAttributes: {
-          for: "telephone",
-          class: "form-label",
-        },
-        text: "Telephone :",
-      },
-      {
-        type: "input",
-        inputAttributes: {
-          type: "tel",
-          class: "form-input",
-          id: "telephoneInput",
-          name: "telephone",
-          placeholder: "Phone number",
         },
       },
 
