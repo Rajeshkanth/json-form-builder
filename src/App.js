@@ -284,28 +284,54 @@ const jsonObject = {
 };
 const fields = jsonObject.form.fields;
 function App() {
-  const [regex, setRegex] = useState({
+  const [regex] = useState({
     regexAlpha: /^[A-Za-z]+$/,
     regexNum: /^[0-9]+$/,
-    regexSpecialCharacters: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/,
   });
   const [name, setName] = useState("");
   const [nameAlert, setNameAlert] = useState("");
+  const [mail, setMail] = useState("");
   const [tele, setTele] = useState("");
   const [teleAlert, setTeleAlert] = useState("");
+  const [number, setNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [textarea, setTextArea] = useState("");
 
   const handleInput = (input, e) => {
+    const value = e.target.value;
     switch (input) {
       case "name":
-        regex.regexAlpha.test(e.target.value) || e.target.value === ""
-          ? setName(e.target.value)
-          : setNameAlert("Alphabets only allowed");
+        if (regex.regexAlpha.test(value) || value === "") {
+          setName(value);
+          setNameAlert("");
+        } else {
+          setNameAlert("Alphabets only allowed");
+        }
+
         break;
-      case "tele":
-        regex.regexNum.test(e.target.value) || e.target.value === ""
-          ? setTele(e.target.value)
-          : setTeleAlert("Numbers only allowed");
+      case "email":
+        setMail(value);
+        break;
+      case "telephone":
+        if (regex.regexNum.test(value) || value === "") {
+          setTele(value);
+          setTeleAlert("");
+        } else {
+          setTeleAlert("Numbers only allowed");
+        }
+        break;
+      case "number":
+        setNumber(value);
+        break;
+      case "password":
+        setPassword(value);
+        break;
+      case "textarea":
+        setTextArea(value);
+        break;
+
       default:
+        break;
     }
   };
 
@@ -324,225 +350,78 @@ function App() {
                   {element.text}
                 </label>
               );
-            }
-            if (
-              element.type === "input" &&
-              element.inputAttributes.type === "text"
-            ) {
-              return (
-                <>
-                  <input
-                    key={index}
-                    type={element.inputAttributes.type}
-                    className={element.inputAttributes.class}
-                    id={element.inputAttributes.id}
-                    name={element.inputAttributes.name}
-                    placeholder={element.inputAttributes.placeholder}
-                    hint={element.inputAttributes.hint}
-                    value={name}
-                    onChange={(e) => handleInput("name", e)}
-                  />
-                  {!regex.regexAlpha.test(name) ? nameAlert : null}
-                </>
-              );
-            } else if (
-              element.type === "input" &&
-              element.inputAttributes.type === "email"
-            ) {
-              return (
-                <input
-                  key={index}
-                  type={element.inputAttributes.type}
-                  className={element.inputAttributes.class}
-                  id={element.inputAttributes.id}
-                  name={element.inputAttributes.name}
-                  placeholder={element.inputAttributes.placeholder}
-                  hint={element.inputAttributes.hint}
-                />
-              );
-            } else if (
-              element.type === "input" &&
-              element.inputAttributes.type === "tel"
-            ) {
-              return (
-                <>
-                  <input
-                    key={index}
-                    type={element.inputAttributes.type}
-                    className={element.inputAttributes.class}
-                    id={element.inputAttributes.id}
-                    name={element.inputAttributes.name}
-                    placeholder={element.inputAttributes.placeholder}
-                    hint={element.inputAttributes.hint}
-                    value={tele}
-                    onChange={(e) => handleInput("tele", e)}
-                  />
-                  {!regex.regexNum.test(tele) ? teleAlert : null}
-                </>
-              );
-            } else if (
-              element.type === "input" &&
-              element.inputAttributes.type === "number"
-            ) {
-              return (
-                <input
-                  key={index}
-                  type={element.inputAttributes.type}
-                  className={element.inputAttributes.class}
-                  id={element.inputAttributes.id}
-                  name={element.inputAttributes.name}
-                  placeholder={element.inputAttributes.placeholder}
-                  hint={element.inputAttributes.hint}
-                />
-              );
-            } else if (
-              element.type === "input" &&
-              element.inputAttributes.type === "password"
-            ) {
-              return (
-                <input
-                  key={index}
-                  type={element.inputAttributes.type}
-                  className={element.inputAttributes.class}
-                  id={element.inputAttributes.id}
-                  name={element.inputAttributes.name}
-                  placeholder={element.inputAttributes.placeholder}
-                  hint={element.inputAttributes.hint}
-                />
-              );
-            } else if (
-              element.type === "input" &&
-              element.inputAttributes.type === "date"
-            ) {
-              return (
-                <input
-                  key={index}
-                  type={element.inputAttributes.type}
-                  className={element.inputAttributes.class}
-                  id={element.inputAttributes.id}
-                  name={element.inputAttributes.name}
-                  placeholder={element.inputAttributes.placeholder}
-                  hint={element.inputAttributes.hint}
-                />
-              );
-            } else if (
-              element.type === "input" &&
-              element.inputAttributes.type === "time"
-            ) {
-              return (
-                <input
-                  key={index}
-                  type={element.inputAttributes.type}
-                  className={element.inputAttributes.class}
-                  id={element.inputAttributes.id}
-                  name={element.inputAttributes.name}
-                  placeholder={element.inputAttributes.placeholder}
-                  hint={element.inputAttributes.hint}
-                />
-              );
-            } else if (
-              element.type === "input" &&
-              element.inputAttributes.type === "radio"
-            ) {
-              return (
-                <input
-                  key={index}
-                  type={element.inputAttributes.type}
-                  className={element.inputAttributes.class}
-                  id={element.inputAttributes.id}
-                  name={element.inputAttributes.name}
-                  placeholder={element.inputAttributes.placeholder}
-                  hint={element.inputAttributes.hint}
-                />
-              );
-            } else if (
-              element.type === "input" &&
-              element.inputAttributes.type === "checkbox"
-            ) {
-              return (
-                <input
-                  key={index}
-                  type={element.inputAttributes.type}
-                  className={element.inputAttributes.class}
-                  id={element.inputAttributes.id}
-                  name={element.inputAttributes.name}
-                  placeholder={element.inputAttributes.placeholder}
-                  hint={element.inputAttributes.hint}
-                />
-              );
-            } else if (
-              element.type === "input" &&
-              element.inputAttributes.type === "color"
-            ) {
-              return (
-                <input
-                  key={index}
-                  type={element.inputAttributes.type}
-                  className={element.inputAttributes.class}
-                  id={element.inputAttributes.id}
-                  name={element.inputAttributes.name}
-                  placeholder={element.inputAttributes.placeholder}
-                  hint={element.inputAttributes.hint}
-                />
-              );
-            } else if (
-              element.type === "input" &&
-              element.inputAttributes.type === "file"
-            ) {
-              return (
-                <input
-                  key={index}
-                  type={element.inputAttributes.type}
-                  className={element.inputAttributes.class}
-                  id={element.inputAttributes.id}
-                  name={element.inputAttributes.name}
-                  placeholder={element.inputAttributes.placeholder}
-                  hint={element.inputAttributes.hint}
-                  accept={[
-                    element.inputAttributes.accept.audio,
-                    element.inputAttributes.accept.video,
-                    element.inputAttributes.accept.pdf,
-                    element.inputAttributes.accept.image,
-                  ]}
-                />
-              );
-            } else if (
-              element.type === "input" &&
-              element.inputAttributes.type === "textarea"
-            ) {
-              return (
-                <textarea
-                  key={index}
-                  type={element.inputAttributes.type}
-                  className={element.inputAttributes.class}
-                  id={element.inputAttributes.id}
-                  name={element.inputAttributes.name}
-                  placeholder={element.inputAttributes.placeholder}
-                  hint={element.inputAttributes.hint}
-                />
-              );
-            } else if (
-              element.type === "input" &&
-              element.inputAttributes.type === "select"
-            ) {
+            } else if (element.type === "input") {
+              const inputAttributes = element.inputAttributes;
+              if (inputAttributes.type !== "select") {
+                return (
+                  <div key={index}>
+                    {inputAttributes.type !== "textarea" ? (
+                      <input
+                        key={index}
+                        type={inputAttributes.type}
+                        className={inputAttributes.class}
+                        id={inputAttributes.id}
+                        name={inputAttributes.name}
+                        placeholder={inputAttributes.placeholder}
+                        hint={inputAttributes.hint}
+                        value={
+                          inputAttributes.name === "name"
+                            ? name
+                            : inputAttributes.name === "telephone"
+                            ? tele
+                            : inputAttributes.name === "email"
+                            ? mail
+                            : inputAttributes.name === "number"
+                            ? number
+                            : inputAttributes.name === "password"
+                            ? password
+                            : ""
+                        }
+                        onChange={(e) => handleInput(inputAttributes.name, e)}
+                      />
+                    ) : (
+                      <textarea
+                        key={index}
+                        type={inputAttributes.type}
+                        className={inputAttributes.class}
+                        id={inputAttributes.id}
+                        name={inputAttributes.name}
+                        placeholder={inputAttributes.placeholder}
+                        hint={inputAttributes.hint}
+                        value={
+                          inputAttributes.name === "textarea" ? textarea : ""
+                        }
+                        onChange={(e) => handleInput(inputAttributes.name, e)}
+                      />
+                    )}
+                    {inputAttributes.name === "name"
+                      ? !regex.regexAlpha.test(name)
+                        ? nameAlert
+                        : null
+                      : null}
+                    {inputAttributes.name === "telephone"
+                      ? !regex.regexNum.test(tele)
+                        ? teleAlert
+                        : null
+                      : null}
+                  </div>
+                );
+              }
+
               return (
                 <select
                   key={index}
-                  type={element.inputAttributes.type}
-                  className={element.inputAttributes.class}
-                  id={element.inputAttributes.id}
-                  name={element.inputAttributes.name}
-                  hint={element.inputAttributes.hint}
+                  type={inputAttributes.type}
+                  className={inputAttributes.class}
+                  id={inputAttributes.id}
+                  name={inputAttributes.name}
+                  hint={inputAttributes.hint}
                 >
-                  <option value={element.inputAttributes.option.option1}>
-                    {element.inputAttributes.option.option1}
-                  </option>
-                  <option value={element.inputAttributes.option.option2}>
-                    {element.inputAttributes.option.option2}
-                  </option>
-                  <option value={element.inputAttributes.option.option3}>
-                    {element.inputAttributes.option.option3}
-                  </option>
+                  {Object.values(inputAttributes.option).map((option, ind) => (
+                    <option key={ind} value={option}>
+                      {option}
+                    </option>
+                  ))}
                 </select>
               );
             }
